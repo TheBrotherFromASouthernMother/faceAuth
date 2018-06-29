@@ -3,6 +3,7 @@ const multer  =   require('multer');
 const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
+const { isSingleFaceDeteched, face_location, faceFoundEvent } = require('./child.js')
 
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
