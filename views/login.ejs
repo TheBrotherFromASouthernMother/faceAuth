@@ -27,7 +27,7 @@
   captureButton.addEventListener('click', () => {
     // Draw the video frame to the canvas.
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
-    var dataURL = canvas.toDataURL("image/png");
+    var dataURL = canvas.toDataURL("image/jpg");
     dataURL = dataURL.split(",")[1];
     console.log(dataURL)
     $.ajax({
