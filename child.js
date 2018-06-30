@@ -4,7 +4,7 @@ const EventEmitter = require("events").EventEmitter;
 let faceFoundEvent = new EventEmitter;
 module.exports.faceFoundEvent = faceFoundEvent;
 
-function isSingleFaceDeteched(img) {
+function runFacialRec(img) {
 
   const facial_dect = spawn('python3', ['app.py', img], {'detached': true});
 
@@ -18,7 +18,8 @@ function isSingleFaceDeteched(img) {
 
   facial_dect.on('close', (code) => {
     face_location = face_location.toString().toLowerCase().slice(0, face_location.indexOf(" "));
-    console.log(face_location)
+    face_location = Boolean(face_location);
+    console.log(typeof face_location)
     console.log(`child process exited with code ${code}`);
     faceFoundEvent.emit('end');
     module.exports.face_location = face_location;
@@ -27,4 +28,12 @@ function isSingleFaceDeteched(img) {
 
 }
 
-module.exports.isSingleFaceDeteched = isSingleFaceDeteched;
+module.exports.runFacialRec = runFacialRec;
+
+function handlePythonResponse(result) {
+  if (result === "true" || result === "false") {
+    return Boolean(result);
+  } else {
+    return result
+  }
+}

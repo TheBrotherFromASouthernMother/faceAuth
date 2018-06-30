@@ -6,10 +6,13 @@
 * JavaScript
 * Python
 * <a href="https://github.com/ageitgey/face_recognition"> Face Recognition </a>
+* dlib
 * EJS
 * Express
 * Promise.js (possibly)
+* Sequelize (To be implemented)
+* Possibly React? Might be overkill though
+* Docker
 
 
 ## Getting Started
-  

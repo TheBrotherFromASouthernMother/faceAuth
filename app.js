@@ -25,15 +25,17 @@ app.post('/',function(req,res){
   req.on("end", () => {
     let data = body;
     data = new Buffer(data, 'base64');
+    //TODO: image file name should be a unique, most likely based off the name of the user,
+    //TODO: This means additional functionality will have to be built out that checks the username against a SQL db to ensure uniqueness
+    //TODO: Will also need to update the client side to the username via AJAX
     fs.writeFile('./uploads/face70.jpg', data, (err) => {
       if (err) throw err;
-      PythonProcess.isSingleFaceDeteched("./uploads/face70.jpg")
+      PythonProcess.runFacialRec("./uploads/face70.jpg")
       PythonProcess.faceFoundEvent.on('end', ()=> {
 
       })
       console.log('The file has been saved!');
-      //TODO: connect child.js to check that their is a single the face within picture
-      //TODO: Create script to run the new face against the database of faces in the banned_user section
+
       //TODO: If user does not appear in the banned users folder grant permissions and write file to confirmed users folder
     });
   })

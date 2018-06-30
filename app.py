@@ -4,6 +4,10 @@ import face_recognition
 import sys
 
 directory = os.fsencode("./banned_users");
+ErrorCodes = {
+    "Code_2": "too many face";
+    "Code_3": "no faces"
+}
 
 image = face_recognition.load_image_file(sys.argv[1])
 face_locations = face_recognition.face_locations(image)
@@ -28,9 +32,13 @@ if (face_locations[0] and len(face_locations) == 1):
             print(isUserBanned)
             break
         integer_i += 1
+    if (isUserBanned == False):
+        print(isUserBanned)
 
+elif(len(face_locations) > 1):
+    print(ErrorCodes["Code_2"])
+elif (len(face_locations) < 1):
+    print(ErrorCodes["Code_3"]))
 
-if (isUserBanned == False):
-    print(isUserBanned)
 
 sys.stdout.flush()
