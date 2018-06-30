@@ -8,21 +8,20 @@ function runFacialRec(img) {
 
   const facial_dect = spawn('python3', ['app.py', img], {'detached': true});
 
-  let face_location = "";
+  let facialDectResult = "";
 
   facial_dect.stdout.on('data', function (data){
-    face_location += data;
+    facialDectResult += data;
     faceFoundEvent.emit('data', data)
   });
 
-
+  //Because return a value from an async callback is impossible
   facial_dect.on('close', (code) => {
-    face_location = face_location.toString().toLowerCase().slice(0, face_location.indexOf(" "));
-    face_location = Boolean(face_location);
-    console.log(typeof face_location)
+    facialDectResult = facialDectResult.toString().toLowerCase().slice(0, facialDectResult.indexOf(" "));
+    facialDectResult = handlePythonResponse(facialDectResult)
     console.log(`child process exited with code ${code}`);
     faceFoundEvent.emit('end');
-    module.exports.face_location = face_location;
+    module.exports.facialDectResult = facialDectResult;
   });
 
 
@@ -30,6 +29,7 @@ function runFacialRec(img) {
 
 module.exports.runFacialRec = runFacialRec;
 
+//Determines on the JavaScript side whether the user is banned or even if there was a face dection
 function handlePythonResponse(result) {
   if (result === "true" || result === "false") {
     return Boolean(result);

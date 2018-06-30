@@ -20,6 +20,9 @@ def compare(filename):
     return results[0]
 
 isUserBanned = False
+
+#TODO: O(n) time complexity currently, will eventually need create subfolders and refactor in order to keep the process from hanging once datasets reach triple digits
+# Idea: create subfolders based on user's skin hue, maybe using TensorFlow. This could significantly speed up the program at larger datasets
 if (face_locations[0] and len(face_locations) == 1):
 
     integer_i = 0;

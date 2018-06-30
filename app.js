@@ -14,10 +14,10 @@ app.get("/", (req, res) => {
 })
 
 
-
 app.post('/',function(req,res){
-  let body = "";
 
+  // Had to use old school piping as the Express body-parser package only accepts JSON and XML data
+  let body = "";
   req.on('data', data => {
     body += data;
   })
