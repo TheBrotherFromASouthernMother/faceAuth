@@ -5,7 +5,7 @@ import sys
 
 directory = os.fsencode("./banned_users");
 ErrorCodes = {
-    "Code_2": "too many face";
+    "Code_2": "too many face",
     "Code_3": "no faces"
 }
 

@@ -2,13 +2,14 @@
   "name": "facial-recognition-login",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Christian Lowe (@TheBrotherFromASouthernMother)",
+  "license": "MIT",
+  "repository": "TheBrotherFromASouthernMother/facial-recognition-user-auth",
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.3",
