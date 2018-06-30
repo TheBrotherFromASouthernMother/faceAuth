@@ -17,7 +17,7 @@ function isSingleFaceDeteched(img) {
 
 
   facial_dect.on('close', (code) => {
-    face_location = face_location.toString();
+    face_location = face_location.toString().toLowerCase().slice(0, face_location.indexOf(" "));
     console.log(face_location)
     console.log(`child process exited with code ${code}`);
     faceFoundEvent.emit('end');
