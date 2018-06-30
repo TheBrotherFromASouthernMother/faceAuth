@@ -1,23 +1,36 @@
 import dlib
-
-from PIL import Image
+import os
 import face_recognition
 import sys
 
+directory = os.fsencode("./banned_users");
 
 image = face_recognition.load_image_file(sys.argv[1])
 face_locations = face_recognition.face_locations(image)
 
-print("I found {} face(s) in this photograph.".format(len(face_locations)))
+def compare(filename):
+    banned_user = face_recognition.load_image_file("./banned_users/" + filename)
+    banned_encoding = face_recognition.face_encodings(banned_user)[0]
+    unknown_encoding = face_recognition.face_encodings(image)[0];
+    results = face_recognition.compare_faces([banned_encoding], unknown_encoding)
+    return results[0]
 
-for face_location in face_locations:
+isUserBanned = False
+if (face_locations[0] and len(face_locations) == 1):
 
-    # Print the location of each face in this image
-    top, right, bottom, left = face_location
+    integer_i = 0;
+    for file in os.listdir(directory):
+        if(integer_i == len(os.listdir(directory))):
+            break
+        filename = os.fsdecode(file)
+        isUserBanned = compare(filename)
+        if (isUserBanned == True):
+            print(isUserBanned)
+            break
+        integer_i += 1
 
-    # You can access the actual face itself like this:
-    face_image = image[top:bottom, left:right]
 
+if (isUserBanned == False):
+    print(isUserBanned)
 
-print(face_locations)
 sys.stdout.flush()

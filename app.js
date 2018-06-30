@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
-const { isSingleFaceDeteched, face_location, faceFoundEvent } = require('./child.js')
+const PythonProcess = require('./child.js')
 
 
 app.set("view engine", "ejs");
@@ -25,9 +25,12 @@ app.post('/',function(req,res){
   req.on("end", () => {
     let data = body;
     data = new Buffer(data, 'base64');
-    console.log(data)
-    fs.writeFile('./uploads/face69.jpg', data, (err) => {
+    fs.writeFile('./uploads/face70.jpg', data, (err) => {
       if (err) throw err;
+      PythonProcess.isSingleFaceDeteched("./uploads/face70.jpg")
+      PythonProcess.faceFoundEvent.on('end', ()=> {
+
+      })
       console.log('The file has been saved!');
       //TODO: connect child.js to check that their is a single the face within picture
       //TODO: Create script to run the new face against the database of faces in the banned_user section
