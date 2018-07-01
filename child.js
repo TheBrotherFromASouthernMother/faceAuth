@@ -15,7 +15,6 @@ function runFacialRec(img) {
     faceFoundEvent.emit('data', data)
   });
 
-
   facial_dect.on('close', facial_dectClose(code, facialDectResult));
 } //end runFacialRec
 
