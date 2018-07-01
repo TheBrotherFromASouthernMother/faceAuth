@@ -15,25 +15,33 @@ function runFacialRec(img) {
     faceFoundEvent.emit('data', data)
   });
 
-  //Because return a value from an async callback is impossible
-  facial_dect.on('close', (code) => {
-    facialDectResult = facialDectResult.toString().toLowerCase().slice(0, facialDectResult.indexOf(" "));
-    facialDectResult = handlePythonResponse(facialDectResult)
-    console.log(`child process exited with code ${code}`);
-    faceFoundEvent.emit('end');
-    module.exports.facialDectResult = facialDectResult;
-  });
 
-
-}
+  facial_dect.on('close', facial_dectClose(code, facialDectResult));
+} //end runFacialRec
 
 module.exports.runFacialRec = runFacialRec;
 
+//Because returning a value from a callback to a parent scope is impossible, results must be pickedup via module export/import
+function facial_DectClose(process_code, facialDectResult) {
+  facialDectResult = facialDectResult.toString().toLowerCase();
+  facialDectResult = handlePythonResponse(facialDectResult)
+  console.log(`child process exited with code ${process_code}`);
+  faceFoundEvent.emit('end');
+  module.exports.facialDectResult = facialDectResult;
+  return facialDectResult;
+}
+
+module.exports.facial_DectClose = facial_DectClose;
+
 //Determines on the JavaScript side whether the user is banned or even if there was a face dection
 function handlePythonResponse(result) {
-  if (result === "true" || result === "false") {
-    return Boolean(result);
+  if (result.includes("true")) {
+    return true;
+  } else if (result.includes("false")) {
+    return false;
   } else {
     return result
   }
 }
+
+module.exports.handlePythonResponse = handlePythonResponse;
