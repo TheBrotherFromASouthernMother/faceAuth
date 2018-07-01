@@ -14,7 +14,11 @@
 * Possibly React? Might be overkill though
 * Docker
 * Jest
-* Pytest 
+* Pytest
 
 
 ## Getting Started
+
+1. Create your app.env file.
+2. Partition a PostgrSQL database, if using Heroku <a href="https://www.heroku.com/postgres"> Heroku Postgres </a> is a simple and easy way to get started
+3. Install the facial recognition package <a href="https://github.com/ageitgey/face_recognition"> Face Recognition </a>
