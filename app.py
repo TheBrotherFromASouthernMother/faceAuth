@@ -25,6 +25,7 @@ def matchFacesInDirectory(unknown_image):
         integer_i += 1
     if (isUserBanned == False):
         print(isUserBanned)
+    return isUserBanned
 
 def runFacialRecognition():
 
@@ -43,7 +44,6 @@ def runFacialRecognition():
         print(ErrorCodes["Code_2"])
     elif (len(face_locations) < 1):
         print(ErrorCodes["Code_3"])
-
 
     sys.stdout.flush()
 

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "jest; pytest ./test/compareTest.py"
+    "test": "jest; pytest ./test/*.py"
   },
   "author": "Christian Lowe (@TheBrotherFromASouthernMother)",
   "license": "MIT",

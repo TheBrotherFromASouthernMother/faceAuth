@@ -32,7 +32,8 @@ app.post('/',function(req,res){
       if (err) throw err;
       PythonProcess.runFacialRec("./uploads/face70.jpg")
       PythonProcess.faceFoundEvent.on('end', ()=> {
-
+        let { facialDectResult } = require("./child.js");
+        console.log(facialDectResult, "in app.js")
       })
       console.log('The file has been saved!');
 

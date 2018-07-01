@@ -13,6 +13,8 @@
 * Sequelize (To be implemented)
 * Possibly React? Might be overkill though
 * Docker
+* Jest
+* Pytest 
 
 
 ## Getting Started
