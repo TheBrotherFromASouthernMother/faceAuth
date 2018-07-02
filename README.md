@@ -1,4 +1,4 @@
-# Facial Recognition User Authentication
+# FaceAuth
 <p> Web tool that allows developers to authenticate users using facial analysis. </p>
 
 ## Key Technologies
