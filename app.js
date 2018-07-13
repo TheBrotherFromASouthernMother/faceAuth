@@ -3,11 +3,14 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
 const PythonProcess = require('./child.js')
-const bcrypt = require("bcrypt")
+
+const bcrypt = require("bcrypt");
 
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+app.use(express.static("./public", ))
 
 
 app.get("/", (req, res) => {
