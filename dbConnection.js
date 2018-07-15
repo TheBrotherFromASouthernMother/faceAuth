@@ -26,7 +26,8 @@ const User = sequelize.define("User", {
   lastName: { type: Sequelize.STRING, allowNull: false },
   email: { type: Sequelize.STRING, allowNull: false },
   password: { type: Sequelize.STRING, allowNull: false },
-  verification_image: { type: Sequelize.STRING, allowNull: true }
+  verification_image: { type: Sequelize.STRING, allowNull: true },
+  isAdmin: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
 })
 
 User.sync({force: false}).then(() => {
@@ -45,3 +46,4 @@ User.sync({force: false}).then(() => {
 //WARNING: When using SQL commands on database, sequlize stores table names with paraentheses, so SELECT * FROM Users; should be SELECT * from "Users";
 //https://stackoverflow.com/a/695312/8865999
 module.exports.sequelize = sequelize;
+module.exports.User = User;
