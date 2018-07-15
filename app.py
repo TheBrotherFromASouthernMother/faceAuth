@@ -27,6 +27,12 @@ def matchFacesInDirectory(unknown_image):
         print(isUserBanned)
     return isUserBanned
 
+def throwAwayImage(imageLocation):
+    try:
+        os.remove(imageLocation);
+    except Exception as e:
+        pass
+
 def runFacialRecognition():
 
     ErrorCodes = {
@@ -38,13 +44,15 @@ def runFacialRecognition():
     face_locations = face_recognition.face_locations(image)
     #TODO: O(n) time complexity currently, will eventually need create subfolders and refactor in order to keep the process from hanging once datasets reach triple digits
     # Idea: create subfolders based on user's skin hue, maybe using TensorFlow. This could significantly speed up the program at larger datasets
+    #TODO: Need to create functionality to delete image if no face or more than one face is found in the image
     if (face_locations[0] and len(face_locations) == 1):
         matchFacesInDirectory(image)
     elif(len(face_locations) > 1):
         print(ErrorCodes["Code_2"])
+        throwAwayImage(sys.argv[1]);
     elif (len(face_locations) < 1):
+        throwAwayImage(sys.argv[1])
         print(ErrorCodes["Code_3"])
-
     sys.stdout.flush()
 
 if __name__ == '__main__':

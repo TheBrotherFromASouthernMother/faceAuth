@@ -38,8 +38,8 @@ User.sync({force: false}).then(() => {
     lastName: 'Lowe',
     email: 'christglowe@gmail.com',
     password: "portfolio2018",
-    verification_image: "./confirmed_users/TheBrotherFromASouthernMother.jpg"
-
+    verification_image: "./confirmed_users/TheBrotherFromASouthernMother.jpg",
+    isAdmin: true
   });
 });
 
